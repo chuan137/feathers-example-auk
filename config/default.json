@@ -6,5 +6,18 @@
     "default": 10,
     "max": 50
   },
-  "postgres": "postgres://postgres:@localhost:5432/myapp"
+  "postgres": "postgres://postgres:@localhost:5432/myapp",
+  "authentication": {
+    "secret": "xjCBxShgYsP7IMIDXoMS335FfAgdqsOi0ySvMUlNOJnj0bXSlRnNJvcfyANXBWet",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "google": {
+      "clientID": "your google client id",
+      "clientSecret": "your google client secret"
+    }
+  }
 }

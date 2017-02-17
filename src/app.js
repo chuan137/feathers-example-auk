@@ -19,6 +19,8 @@ const appHooks = require('./hooks');
 
 const postgres = require('./postgres');
 
+const authentication = require('./authentication');
+
 const app = feathers();
 
 // Load app configuration
@@ -38,6 +40,8 @@ app.configure(hooks());
 app.configure(postgres);
 app.configure(rest());
 app.configure(socketio());
+
+app.configure(authentication);
 
 // Set up our services (see `services/index.js`)
 app.configure(services);
