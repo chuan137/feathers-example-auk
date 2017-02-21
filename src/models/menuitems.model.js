@@ -6,37 +6,31 @@ const Sequelize = require('sequelize');
 
 module.exports = function(app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const items = sequelizeClient.define('orderitems', {
-    quantity: Sequelize.INTEGER,
-    note: {
+  const menuitems = sequelizeClient.define('menuitems', {
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    price: {
+      type: Sequelize.FLOAT,
+      allowNull: false
+    },
+    description: {
       type: Sequelize.STRING,
       allowNull: true
     },
-    option: {
-      type: Sequelize.ENUM('0', '1', '2'),
-      defaultValue: '0'
-    }
-  }, {
-    classMethods: {
-      associate (models) {
-        items.belongsTo(models.menuitems)
-      }
-    }
-  });
-  const orders = sequelizeClient.define('orders', {
-    text: {
+    category: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: true
     }
   }, {
     classMethods: {
       associate (models) {
       	// Define associations here
         // See http://docs.sequelizejs.com/en/latest/docs/associations/
-        orders.hasMany(items)
       }
     }
   });
 
-  return orders;
+  return menuitems;
 };
